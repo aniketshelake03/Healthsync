@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthSync - Smart Healthcare Platform</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <style>
+        /* 
+  HealthSync - Premium Design System 
+  Inlined for robust loading 
+*/
+        :root {
+            /* Premium Medical Color Palette - Vibrant & Trustworthy */
+            --primary: #0ca678;
+            /* Vibrant Teal */
+            --primary-gradient: linear-gradient(135deg, #0ca678 0%, #087f5b 100%);
+            --secondary: #228be6;
+            /* Blue */
+            --secondary-gradient: linear-gradient(135deg, #228be6 0%, #1864ab 100%);
+            --accent: #fcc419;
+            /* Warm Yellow */
+
+            --dark: #1f2937;
+            /* Dark Slate */
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --light: #f3f4f6;
+            /* Light Gray Bg */
+            --white: #ffffff;
+
+            /* Modern Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--light);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        /* Utilities */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: var(--dark);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-subtitle {
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.875rem;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            background: linear-gradient(to right, var(--dark), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section p {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(12, 166, 120, 0.3);
+            border: 1px solid transparent;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(12, 166, 120, 0.4);
+        }
+
+        .btn-outline {
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-sm);
+            padding: 12px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 120px;
+            padding-bottom: 80px;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(12, 166, 120, 0.03) 0%, rgba(34, 139, 230, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: linear-gradient(135deg, rgba(12, 166, 120, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+            transform: rotate(-15deg);
+            border-radius: 100px;
+            z-index: 0;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 64px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .hero-text h1 span {
+            color: var(--primary);
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 600px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Stats */
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .stat-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Services */
+        .section {
+            padding: 100px 0;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(12, 166, 120, 0.2);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 24px;
+        }
+
+        /* Cards */
+        .hospital-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .hospital-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .hospital-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-img {
+            height: 220px;
+            background: #e5e7eb;
+            position: relative;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-rating {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            color: var(--dark);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.9rem;
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(12, 166, 120, 0.1);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 64px;
+        }
+
+        .page-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: white;
+            color: var(--text-secondary);
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .page-btn:hover:not(:disabled) {
+            background: var(--light);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .page-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(12, 166, 120, 0.3);
+            border-color: var(--primary);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(31, 41, 55, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 48px;
+            border-radius: var(--radius-xl);
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: var(--shadow-xl);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: var(--transition);
+            outline: none;
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(12, 166, 120, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <div
+                    style="width: 40px; height: 40px; background: var(--primary-gradient); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white;">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <span>HealthSync</span>
+            </a>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#services" class="nav-link">Our Services</a>
+                <a href="#hospitals" class="nav-link">Find Hospitals</a>
+                <a href="#beds" class="nav-link">Bed Status</a>
+            </div>
+            <div class="nav-actions" style="display: flex; gap: 16px;">
+                <a href="login.html" class="btn btn-outline">Log In</a>
+                <a href="#hospitals" class="btn btn-primary">Book Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <div class="container hero-content">
+            <div class="hero-text animate__animated animate__fadeInLeft">
+                <div
+                    style="display: inline-flex; align-items: center; gap: 8px; background: rgba(12, 166, 120, 0.1); color: var(--primary); padding: 8px 16px; border-radius: 30px; margin-bottom: 24px; font-weight: 600; font-size: 0.9rem;">
+                    <i class="fa-solid fa-circle-check"></i> #1 Trusted Healthcare Platform
+                </div>
+                <h1>Satara's Trusted <br> <span>Healthcare Network.</span></h1>
+                <p>Connecting Satara City and rural communities with top doctors, specialized clinics (Eye, ENT,
+                    Dental), and real-time bed availability.</p>
+
+                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                    <a href="#hospitals" class="btn btn-primary">
+                        <i class="fa-solid fa-magnifying-glass"></i> Book Appointment
+                    </a>
+                    <a href="#beds" class="btn btn-outline" style="background: white;">
+                        <i class="fa-solid fa-bed-pulse"></i> Track ICU Beds
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3>50+</h3>
+                        <p>Top Hospitals</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>200+</h3>
+                        <p>Specialist Doctors</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>98%</h3>
+                        <p>Patient Satisfaction</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-image animate__animated animate__fadeInRight">
+                <!-- Fallback to a placehold.co image if local asset missing, but try local first -->
+                <img src="assets/images/hero.png" alt="HealthSync App Interface"
+                    onerror="this.src='https://placehold.co/600x600/f3f4f6/0ca678?text=HealthSync+UI'">
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">What We Do</span>
+                <h2 class="section-title">Healthcare for Every Village</h2>
+                <p>Bringing dedicated eye, ear, and dental care to every corner of Satara District.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
+                <!-- Card 1 -->
+                <div class="service-card">
+                    <div class="service-icon" style="background: rgba(34, 139, 230, 0.1); color: var(--secondary);">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <h3>Specialist Appointments</h3>
+                    <p>Book consultations with top-rated doctors across diverse specialties. Skip the waiting room with
+                        instant booking.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="service-card">
+                    <div class="service-icon" style="background: rgba(12, 166, 120, 0.1); color: var(--primary);">
+                        <i class="fa-solid fa-procedures"></i>
+                    </div>
+                    <h3>Live Bed Tracking</h3>
+                    <p>Real-time view of ICU, ventilator, and general ward bed availability. Critical information when
+                        every second counts.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="service-card">
+                    <div class="service-icon" style="background: rgba(252, 196, 25, 0.1); color: var(--accent);">
+                        <i class="fa-solid fa-truck-medical"></i>
+                    </div>
+                    <h3>Emergency Response</h3>
+                    <p>Integrated ambulance alerts and priority hospital admission protocols for critical patients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hospitals Section -->
+    <section id="hospitals" class="section" style="background-color: var(--light);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Network</span>
+                <h2 class="section-title">Find the Best Care</h2>
+                <p>Search through our extensive network of verified hospitals and clinics.</p>
+            </div>
+
+            <!-- Enhanced Search Bar -->
+            <div style="max-width: 700px; margin: 0 auto 56px; position: relative;">
+                <input type="text" id="searchInput" placeholder="Search for hospitals, doctors, or specialities..."
+                    style="width: 100%; padding: 20px 24px; padding-right: 140px; border-radius: 50px; border: none; box-shadow: var(--shadow-lg); font-size: 1.1rem; outline: none;">
+                <button id="searchBtn" class="btn btn-primary"
+                    style="position: absolute; right: 8px; top: 8px; padding: 12px 32px;">
+                    Search
+                </button>
+            </div>
+
+            <div id="hospitalList" class="hospital-grid">
+                <!-- JS Injection -->
+            </div>
+
+            <div class="pagination" id="paginationControls">
+                <!-- JS Injection -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Bed Availability Section -->
+    <section id="beds" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Real-Time</span>
+                <h2 class="section-title">Bed Availability Status</h2>
+                <p>Live updates on bed occupancy across the city.</p>
+            </div>
+
+            <div id="bedGrid" class="hospital-grid">
+                <!-- JS Injection -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--dark); color: white; padding: 64px 0 32px;">
+        <div class="container">
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 48px; margin-bottom: 48px;">
+                <div>
+                    <div class="logo" style="margin-bottom: 24px; color: white;">
+                        <i class="fa-solid fa-heart-pulse" style="color: var(--primary);"></i> HealthSync
+                    </div>
+                    <p style="color: #9ca3af;">Making healthcare accessible, transparent, and efficient for everyone.
+                    </p>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 24px;">Quick Links</h4>
+                    <ul style="list-style: none; color: #9ca3af; display: flex; flex-direction: column; gap: 12px;">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#hospitals">Find Doctors</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 24px;">Contact</h4>
+                    <ul style="list-style: none; color: #9ca3af; display: flex; flex-direction: column; gap: 12px;">
+                        <li><i class="fa-solid fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fa-solid fa-envelope"></i> help@healthsync.com</li>
+                        <li><i class="fa-solid fa-location-dot"></i> 123 Medical Plaza, NY</li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 32px; text-align: center; color: #6b7280;">
+                &copy; 2026 HealthSync Platform. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+                <h2 style="font-size: 1.8rem;">Check Availability & Book</h2>
+                <button onclick="closeModal()"
+                    style="background: #f3f4f6; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #6b7280;">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="bookingForm" onsubmit="handleBooking(event)">
+                <div class="form-group">
+                    <label class="form-label">Select Hospital</label>
+                    <div style="position: relative;">
+                        <i class="fa-regular fa-hospital"
+                            style="position: absolute; left: 16px; top: 18px; color: #9ca3af;"></i>
+                        <select id="hospitalSelect" class="form-control"
+                            style="padding-left: 48px; appearance: none; background: white;">
+                            <!-- JS populated -->
+                        </select>
+                        <i class="fa-solid fa-chevron-down"
+                            style="position: absolute; right: 16px; top: 18px; color: #9ca3af; pointer-events: none;"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Department</label>
+                    <div style="position: relative;">
+                        <i class="fa-solid fa-stethoscope"
+                            style="position: absolute; left: 16px; top: 18px; color: #9ca3af;"></i>
+                        <select class="form-control" style="padding-left: 48px; appearance: none; background: white;">
+                            <option>General Medicine</option>
+                            <option>Cardiology</option>
+                            <option>Pediatrics</option>
+                            <option>Neurology</option>
+                            <option>Orthopedics</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"
+                            style="position: absolute; right: 16px; top: 18px; color: #9ca3af; pointer-events: none;"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Patient Name</label>
+                    <div style="position: relative;">
+                        <i class="fa-regular fa-user"
+                            style="position: absolute; left: 16px; top: 18px; color: #9ca3af;"></i>
+                        <input type="text" required class="form-control" style="padding-left: 48px;"
+                            placeholder="Full Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Preferred Date</label>
+                    <div style="position: relative;">
+                        <input type="date" required class="form-control">
+                    </div>
+                    <div
+                        style="margin-top: 12px; font-size: 0.9rem; color: #0ca678; background: rgba(12, 166, 120, 0.1); padding: 8px 12px; border-radius: 8px; display: flex; gap: 8px; align-items: center;">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>Check available slots before traveling to Satara.</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Preferred Time</label>
+                    <div style="position: relative;">
+                        <i class="fa-regular fa-clock"
+                            style="position: absolute; left: 16px; top: 18px; color: #9ca3af;"></i>
+                        <select class="form-control" style="padding-left: 48px; appearance: none; background: white;"
+                            required>
+                            <option value="">Select Time Slot</option>
+                            <option>09:00 AM - 10:00 AM</option>
+                            <option>10:00 AM - 11:00 AM</option>
+                            <option>11:00 AM - 12:00 PM</option>
+                            <option>04:00 PM - 05:00 PM</option>
+                            <option>05:00 PM - 06:00 PM</option>
+                            <option>06:00 PM - 07:00 PM</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"
+                            style="position: absolute; right: 16px; top: 18px; color: #9ca3af; pointer-events: none;"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <div style="position: relative;">
+                        <i class="fa-solid fa-phone"
+                            style="position: absolute; left: 16px; top: 18px; color: #9ca3af;"></i>
+                        <input type="tel" required class="form-control" style="padding-left: 48px;"
+                            placeholder="10-digit Mobile Number" pattern="[0-9]{10}">
+                    </div>
+                    <small style="display: block; margin-top: 6px; color: #6b7280; font-size: 0.85rem;">
+                        <i class="fa-solid fa-message"></i> We will send the booking confirmation via SMS.
+                    </small>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 16px;">
+                    Confirm Booking
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main JS -->
+    <script src="app.js"></script>
+</body>
+
+</html>

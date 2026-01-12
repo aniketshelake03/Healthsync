@@ -1,0 +1,26 @@
+target/
+.m2/
+
+
+.vscode/
+.idea/
+
+
+node_modules/
+
+
+AppData/
+NTUSER.*
+Downloads/
+Music/
+Videos/
+Saved Games/
+Searches/
+Contacts/
+Favorites/
+Links/
+
+
+*.log
+*.tmp
+

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthSync - Login</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Vibrant Purple Theme from Screenshot */
+            --primary: #a55eea;
+            --primary-dark: #8854d0;
+            --gradient: linear-gradient(135deg, #a55eea 0%, #8854d0 100%);
+            --text-dark: #2f3542;
+            --text-light: #747d8c;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(165, 94, 234, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f1f2f6;
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar matched to reference */
+        .navbar {
+            background: white;
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #20bf6b;
+            /* Green logo text from ref */
+        }
+
+        .logo span {
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: block;
+        }
+
+        /* Purple Hero */
+        .hero {
+            background: var(--gradient);
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+        }
+
+        /* Background Pattern (Subtle houses/shapes) */
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            z-index: 1;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Login Card */
+        .login-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            margin-top: -80px;
+            /* Overlap hero */
+            padding-bottom: 50px;
+            z-index: 5;
+        }
+
+        .login-card {
+            background: white;
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #f1f2f6;
+            border-radius: 12px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(165, 94, 234, 0.1);
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            cursor: pointer;
+        }
+
+        .forgot-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 16px;
+            background: var(--gradient);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(165, 94, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero {
+                height: 250px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#services" class="nav-link">Our Services</a>
+                <a href="index.html#hospitals" class="nav-link">Find Hospitals</a>
+                <a href="index.html#beds" class="nav-link">Bed Status</a>
+            </div>
+
+            <!-- Logotype matching ref -->
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <div>
+                    HealthSync
+                    <span style="color: #747d8c; font-size: 0.75rem; margin-top: -2px;">Your health partner</span>
+                </div>
+            </a>
+
+            <div class="nav-links">
+                <a href="register.html" class="nav-link">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="hero">
+        <h1>LOGIN</h1>
+    </div>
+
+    <!-- Login Form -->
+    <div class="login-container">
+        <div class="login-card">
+            <form onsubmit="handleLogin(event)">
+                <!-- Role Selection -->
+                <div class="role-selector"
+                    style="display: flex; gap: 10px; margin-bottom: 25px; background: #f1f2f6; padding: 5px; border-radius: 12px;">
+                    <button type="button" class="role-btn active" onclick="selectRole('patient')" id="btn-patient"
+                        style="flex: 1; padding: 10px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; background: white; color: var(--primary); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">Patient</button>
+                    <button type="button" class="role-btn" onclick="selectRole('doctor')" id="btn-doctor"
+                        style="flex: 1; padding: 10px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; background: transparent; color: var(--text-light);">Doctor</button>
+                    <button type="button" class="role-btn" onclick="selectRole('admin')" id="btn-admin"
+                        style="flex: 1; padding: 10px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; background: transparent; color: var(--text-light);">Admin</button>
+                </div>
+                <input type="hidden" id="selectedRole" value="patient">
+
+                <div class="form-group">
+                    <label>Email Address <span style="color: red">*</span></label>
+                    <input type="email" id="email" class="form-input" required placeholder="Enter your email"
+                        value="patient@health.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Password <span style="color: red">*</span></label>
+                    <input type="password" id="password" class="form-input" required placeholder="Enter your password"
+                        value="123">
+                </div>
+
+                <div class="form-actions">
+                    <label class="checkbox-group">
+                        <input type="checkbox"> Remember Me
+                    </label>
+                    <a href="#" class="forgot-link">Lost your password?</a>
+                </div>
+
+                <div id="loginError" style="color: red; margin-bottom: 15px; display: none;">Invalid credentials</div>
+
+                <button type="submit" class="btn-login">
+                    LOGIN
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        function selectRole(role) {
+            // Update UI
+            document.querySelectorAll('.role-btn').forEach(btn => {
+                btn.style.background = 'transparent';
+                btn.style.color = '#747d8c';
+                btn.style.boxShadow = 'none';
+            });
+            const activeBtn = document.getElementById(`btn-${role}`);
+            activeBtn.style.background = 'white';
+            activeBtn.style.color = '#a55eea';
+            activeBtn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
+
+            // Set Value
+            document.getElementById('selectedRole').value = role;
+
+            // Auto-fill for demo convenience
+            const emailInput = document.getElementById('email');
+            const passInput = document.getElementById('password'); // Ensure this ID exists in your HTML
+            if (role === 'patient') emailInput.value = 'patient@health.com';
+            if (role === 'doctor') emailInput.value = 'doctor@health.com';
+            if (role === 'admin') emailInput.value = 'admin@health.com';
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const role = document.getElementById('selectedRole').value;
+
+            // Show Loading State
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Logging in...';
+            btn.disabled = true;
+
+            const result = await AuthService.login(email, password, role);
+
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+
+            if (result.success) {
+                const params = new URLSearchParams(window.location.search);
+                const returnUrl = params.get('returnUrl');
+                if (returnUrl) {
+                    window.location.href = returnUrl;
+                } else {
+                    window.location.href = result.redirect;
+                }
+            } else {
+                const errorDiv = document.getElementById('loginError');
+                errorDiv.textContent = result.message;
+                errorDiv.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>
